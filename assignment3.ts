@@ -1,4 +1,4 @@
-class person{
+class Person{
     name:string;
     age:number;
 constructor(name:string,age:number){
@@ -21,7 +21,6 @@ class student extends Person{
     study():void{
         console.log('Student ${this.name} is studying.');
     }
-}
 }
 
 const student1=new student("Chetana",30,101);
