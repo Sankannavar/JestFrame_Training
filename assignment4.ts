@@ -1,9 +1,9 @@
 function logInput(input:number|string): void{
-    if(typeof(input==="number")){
-        console.log('Number:${input*input}');
-    }else{
-         console.log('String:${input.toUpperCase()}');
-    }
+        if (typeof input === "string") {
+            console.log(input.toUpperCase());
+        }else{
+             console.log(`Number:${input*input}`);
+        }  
 };
 
 logInput(5);

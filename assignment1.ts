@@ -4,7 +4,7 @@ const enrolled:boolean=true;
 const cources:string[]=["Typescript","Jest Framework"];
 
 function getStudentInfo(name:string,age:number,enrolled:boolean):string{
-    return 'student ${name} is ${age} years old enrolled:${enrolled}';
+    return `student ${name} is ${age} years old. enrolled:${enrolled}`;
 }
 
 console.log(getStudentInfo(studentName,age,enrolled));

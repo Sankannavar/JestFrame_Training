@@ -1,13 +1,13 @@
 class Person{
     name:string;
     age:number;
-constructor(name:string,age:number){
+    constructor(name:string,age:number){
     this.name=name;
     this.age=age;
 }
 
 introduce():void{
-    console.log('Hi,I am ${this.name} and I am ${this.age} year old.');
+    console.log(`Hi,I am ${this.name} and I am ${this.age} year old.`);
 }
 }
 
@@ -19,7 +19,7 @@ class student extends Person{
     }
 
     study():void{
-        console.log('Student ${this.name} is studying.');
+        console.log(`Student ${this.name} is studying.`);
     }
 }
 

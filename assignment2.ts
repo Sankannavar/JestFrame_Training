@@ -6,7 +6,7 @@ isAvilable:boolean;
 }
 
 function printBookinfo(book:Book):void{
-    console.log('Title:${book.title},Authot:%{book.author},Pages:${book.pages},Available:${book.isAvailable}');
+    return console.log(`Title:${book.title},Author:${book.author},Pages:${book.pages},Available:${book.isAvilable}`);  
 }
 
 const book1:Book={
