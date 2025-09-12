@@ -38,7 +38,7 @@ describe("TaskManager business logic",()=>{
 
       test("should interact with mocked API",async()=>{
         const task=manager.addTask("API sync");
-        mockApi.uploadTask.mockResolvedValue(task);
+       // mockApi.uploadTask.mockResolvedValue(task);
          mockApi.fetchTasks.mockResolvedValue([task]);
 
          const uploaded=await mockApi.uploadTask(task);
