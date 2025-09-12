@@ -1,8 +1,8 @@
 on:
   push:
-    branches: [JestFramework]
+    branches: [MiniProject_Jest]
   pull_request:
-    branches: [JestFramework]
+    branches: [MiniProject_Jest]
 
 jobs:
   build-and-test:
