@@ -1,0 +1,31 @@
+name:CI
+on:
+push:
+branches:[JestFramework]
+pull_request:
+branches:[JestFramework]
+
+jobs:
+build-and-test:
+runs-on:ubuntu-latest
+
+steps:
+-name:checkout code
+uses:actions/checkout@v3
+
+-name:Set up Node.js
+uses:actions/setup-nodet@v3
+with:
+node-version:18
+
+-name:install dependencies
+run:npm CI
+
+-name:Build TypeScript
+run:npm run build
+
+-name:Run Tests
+run:npm test
+env:
+ CI:true
+
