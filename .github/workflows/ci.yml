@@ -1,8 +1,8 @@
 on:
   push:
-    branches: [Day5]
+    branches: [JestFramework]
   pull_request:
-    branches: [Day5]
+    branches: [JestFramework]
 
 jobs:
   build-and-test:
