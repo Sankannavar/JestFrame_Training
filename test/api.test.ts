@@ -3,11 +3,35 @@ import app from "../src/cartApi"
 
 
 describe("cart API",()=>{
+//reset cart before each testr
+beforeEach(()=>{
+    (global as any).cart=[];
+});
+
     it("Should add item to cart",async()=>{
         const response =await request(app).post("/cart")
         .send({id:1,name:"PC",qty:2});
         expect(response.status).toBe(201);
         expect(response.body.cart).toHaveLength(1);
+    });
+
+     it("Should not add duplicate item to cart",async()=>{
+        await request(app).post("/cart")
+        .send({id:1,name:"PC",qty:2});
+       const response =await request(app).post("/cart")
+        .send({id:1,name:"PC",qty:2});
+        expect(response.status).toBe(409);
+    });
+
+      it("Should update an item to cart",async()=>{
+        await request(app).post("/cart").send({id:1,name:"PC",qty:2});
+       const response =await request(app).put("/cart/1").send({qty:5});
+        expect(response.status).toBe(200);
+    });
+
+     it("Should return 404 if updating non existing item to cart",async()=>{
+       const response =await request(app).put("/cart/99").send({qty:5});
+        expect(response.status).toBe(404);
     });
 
      it("Should return all item in cart",async()=>{
@@ -17,9 +41,23 @@ describe("cart API",()=>{
     });
 
     it("Should delete an item in cart",async()=>{
+         await request(app).post("/cart").send({id:1,name:"PC",qty:2});
         const response =await request(app).delete("/cart/1");
         expect(response.status).toBe(200);
         expect(response.body.cart).toHaveLength(0);
     });
-})
+
+     it("Should reject bad payload cart",async()=>{
+        const response =await request(app).post("/cart").send({id:3});
+        expect(response.status).toBe(400);
+    });  
+
+     it("Should clear entries cart",async()=>{
+         await request(app).post("/cart").send({id:1,name:"PC",qty:2});
+         await request(app).post("/cart").send({id:1,name:"mouse",qty:1});
+        const response =await request(app).delete("/cart");
+        expect(response.status).toBe(200);
+        expect(response.body.cart).toHaveLength(0);
+    });     
+});
 
