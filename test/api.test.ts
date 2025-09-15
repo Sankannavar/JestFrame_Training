@@ -148,7 +148,7 @@ beforeEach(()=>{
     
      it("Should fail while trying to edit with invalid item",async()=>{
          const response =await request(app).delete("/cart/item");
-        expect(response.status).toEqual(400);
+        expect(response.status).toEqual(404);
     });  
  
      it("deleteing the item which is not added to cart",async()=>{
