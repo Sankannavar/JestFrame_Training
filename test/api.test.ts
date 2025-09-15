@@ -58,6 +58,33 @@ beforeEach(()=>{
         const response =await request(app).delete("/cart");
         expect(response.status).toBe(200);
         expect(response.body.cart).toHaveLength(0);
-    });     
+    });   
+    
+     it("Should reject with negative  quantity cart",async()=>{
+         const response =await request(app).post("/cart").send({id:1,name:"mouse",qty:-1});
+        expect(response.status).toBe(400);
+    });   
+    
+     it("Should reject with non numeric  quantity cart",async()=>{
+         const response =await request(app).post("/cart").send({id:1,name:"mouse",qty:"two"});
+        expect(response.status).toBe(400);
+    });  
+
+     it("Should return empty array if cart is empty",async()=>{
+         const response =await request(app).get("/cart");
+        expect(response.body).toEqual([]);
+    });  
+
+    it("Should delete non existing item",async()=>{
+         const response =await request(app).delete("/cart");
+        expect(response.body.cart).toEqual([]);
+    });  
+
+     it("Should allow same name with different id",async()=>{
+         await request(app).post("/cart").send({id:1,name:"mouse",qty:1});
+         await request(app).post("/cart").send({id:2,name:"mouse",qty:1});
+         const response =await request(app).get("/cart");
+        expect(response.body).toHaveLength(2);
+    });   
 });
 
