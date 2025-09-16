@@ -8,4 +8,14 @@ module.exports = {
   transform: {
     ...tsJestTransformCfg,
   },
+
+  reporters:[
+    "default",
+    ["jest-html-reporters",{
+      publicpath:"./html-report",
+      filename:"report.html",
+      expand:true,
+      pageTitle:"Test Report"
+    }]
+  ]
 };
